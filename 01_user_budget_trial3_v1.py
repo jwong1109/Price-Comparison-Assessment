@@ -1,5 +1,7 @@
-# Float checker - third iteration
-# Simplifies try/except and created AGE_RANGE as a constant
+# Float checker - third trial
+# Simplifies try/except by no longer using valid as a variable.
+# Created BUDGET_RANGE as a constant instead and see whether entered input
+# is in the budget range
 
 def float_checker(question):
     number = ""
@@ -18,7 +20,7 @@ def float_checker(question):
 BUDGET_RANGE = range(1, 501)  # between 1 and 500 inclusive
 budget = float_checker("\nPlease enter your budget: $")
 while budget not in BUDGET_RANGE:  # budget needs to be between 1 and 500
-    budget = float_checker("Please enter your budget between 1 and 500!\n"
+    budget = float_checker("Please enter a budget that is between 1 and 500!\n"
                            "\nPlease enter your budget: $")
 
-print(f"Budget = ${budget:,.2f}")
+print(f"Budget = ${budget}")

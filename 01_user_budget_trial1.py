@@ -1,6 +1,6 @@
 # Float checker - first trial method
 def float_checker(question, low_num, high_num):
-    error = f"Please enter a budget that is between {low_num} and {high_num}"
+    error = f"Please enter a budget that is between {low_num} and {high_num}!"
     valid = False
     while not valid:
         # ask user for the budget and check its validity

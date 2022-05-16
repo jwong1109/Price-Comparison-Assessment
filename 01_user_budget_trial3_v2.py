@@ -1,6 +1,7 @@
-# Float checker - fourth iteration
+# Float checker - developed from v3
 # Separate the BUDGET_RANGE into two constants - minimum and maximum
 # Specific messages directed towards the input entered
+# Amounts rounded tidily to 2dp.
 
 def float_checker(question):
     number = ""

@@ -1,5 +1,4 @@
-# Added 03_product_name_trial1_v3
-# Put the loop code with the product name rather than with the budget
+# Added 04_calculate_price_per_unit_v2
 
 # Import Statements
 
@@ -42,6 +41,14 @@ def not_blank(question):
             return response
 
 
+# Calculate price per unit function
+def calculate_price_per_unit():
+    amount = float_checker("Number of units: ")
+    price = float_checker("Enter price: $")
+    price_per_unit_calculation = price / amount
+    return price_per_unit_calculation
+
+
 # ******** Main Routine ********
 
 # Set up dictionaries / lists needed to hold data
@@ -74,11 +81,10 @@ while product_name != "X":  # Loop code to get various products
     product_name = not_blank("Enter the product name for comparison: ").title()
     if product_name != "X":
         print(f"Product Name: {product_name}\n")
-
         # Get input for the number of units (amount) and price
-
+        price_per_unit = calculate_price_per_unit()
         # Calculate price per unit
-
+        print(f"The price per unit = ${price_per_unit:,.3f}")
         # Append details to list and sort list to find cheapest
 
 # Output the products within and outside of the budget

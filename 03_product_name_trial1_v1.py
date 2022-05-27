@@ -1,11 +1,13 @@
-# Uses .isalpha() test to ensure name contain at least one letter.
-# It won't accept spaces
+# Trial 1: Creating a checker to ensure that the product name is not blank
+# Uses 1 parameter (question) in the function
+# While loop in the function
 
 # Check Product Name Function
 def not_blank(question):
-    while True:
+    valid = ""
+    while not valid:
         response = input(question)
-        if not response.isalpha():
+        if not response:
             print("You can't leave this blank...\n")
         else:
             return response

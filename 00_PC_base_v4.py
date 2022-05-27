@@ -1,4 +1,5 @@
-# Added 03_product_name_v4
+# Added 03_product_name_trial1_v3
+# Put the loop code with the product name rather than with the budget
 
 # Import Statements
 
@@ -32,11 +33,13 @@ def get_unit():
 
 # Check Product Name Function
 def not_blank(question):
-    response = input(question)
-    if not response.isalpha():
-        print("You can't leave this blank...\n")
-    else:
-        return response
+    error_message = "You can't leave this blank...\n"
+    while True:
+        response = input(question)
+        if not response.isalpha():
+            print(error_message)
+        else:
+            return response
 
 
 # ******** Main Routine ********
@@ -46,30 +49,31 @@ def not_blank(question):
 # Ask user if they have used the program before and
 # show instructions if needed
 
-# Loop to get details
-    # Get user budget (between 1 and 500)
-    MINIMUM_BUDGET = 1
-    MAXIMUM_BUDGET = 500
-    budget = float_checker("\nPlease enter your budget: $")
-    while budget < MINIMUM_BUDGET:  # budget needs to be between 1 and 500
-        budget = float_checker("Your budget needs to be at least $1!\n"
-                               "\nPlease enter your budget: $")
-    while budget > MAXIMUM_BUDGET:
-        budget = float_checker("The maximum budget you can have is $500!\n"
-                               "\nPlease enter your budget: $")
-    print(f"Budget = ${budget:,.2f}")
+# Get user budget (between 1 and 500)
+MINIMUM_BUDGET = 1
+MAXIMUM_BUDGET = 500
+budget = float_checker("\nPlease enter your budget: $")
+while budget < MINIMUM_BUDGET:  # budget needs to be between 1 and 500
+    budget = float_checker("Your budget needs to be at least $1!\n"
+                           "\nPlease enter your budget: $")
+while budget > MAXIMUM_BUDGET:
+    budget = float_checker("The maximum budget you can have is $500!\n"
+                           "\nPlease enter your budget: $")
+print(f"Budget = ${budget:,.2f}")
 
-    # Get unit choice for comparison (mL, L, kg, g)
-    unit_choice = None
-    while unit_choice is None:
-        unit_choice = get_unit()
+# Get unit choice for comparison (mL, L, kg, g)
+unit_choice = None
+while unit_choice is None:
+    unit_choice = get_unit()
 
-    print(f"Unit = {unit_choice}")
+print(f"Unit = {unit_choice}")
 
-    # Get input for product name
-    product_name = None
-    while product_name is None:
-        product_name = not_blank("Enter the product name for comparison: ")
+# Get input for product name
+product_name = ""
+while product_name != "X":  # Loop code to get various products
+    product_name = not_blank("Enter the product name for comparison: ").title()
+    if product_name != "X":
+        print(f"Product Name: {product_name}\n")
 
     # Get input for the number of units (amount) and price
 

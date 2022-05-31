@@ -1,4 +1,4 @@
-# Based on 00_PC_base_v7, I added 06_output_products_list_v3
+# Based on 00_PC_base_v7, I added 06_output_products_list_v5
 # Also, adjusted minimum and maximum budget constants to print in the error
 # messages
 # Changed the entered_details list to containing only the variables itself
@@ -50,10 +50,57 @@ def calculate_price_per_unit(entered_amount, entered_price):
     return price_per_unit_calculation
 
 
+# Processing products within and out of budget Function
+def process_products():
+    for each_item in all_details:
+        if not each_item[2] > budget:  # if cost less than the budget
+            # add it to in budget list
+            products_in_budget.append(each_item)
+        else:  # otherwise, for all other original cost greater than the budget
+            # add it to out budget list
+            products_out_budget.append(each_item)
+
+
+# Printing products Function
+def products_outputs(item):
+    print(f"Product Name: {item[0]}")
+    print(f"Amount: {item[1]}{unit_choice}")
+    print(f"Cost Price: ${item[2]:,.2f}")
+    print(f"Unit Price: ${item[3]:,.3f}\n")
+
+
+# Average Unit Price Function
+def average_unit_price():
+    for product in all_details:
+        unit_price = product[3]
+        unit_prices_list.append(unit_price)
+
+    calculate_average = sum(unit_prices_list)/len(unit_prices_list)
+    return calculate_average
+
+
+# Cheapest Product Function
+def cheapest_product():
+    cheapest_product_details = all_details[0]
+    cheapest_name = cheapest_product_details[0]
+    cheapest_unit_price = cheapest_product_details[3]
+
+    return cheapest_name, cheapest_unit_price
+
+
+# Most Expensive Product Function
+def most_expensive_product():
+    most_expensive_product_details = all_details[-1]
+    most_expensive_name = most_expensive_product_details[0]
+    most_expensive_unit_price = most_expensive_product_details[3]
+
+    return most_expensive_name, most_expensive_unit_price
+
+
 # ******** Main Routine ********
 
 # Set up dictionaries / lists needed to hold data
-all_details = []
+all_details = []  # List to contain all the details
 products_in_budget = []  # List to contain products in budget
 products_out_budget = []  # List to contain products out of budget
 unit_prices_list = []  # Another unit_prices_list to find the average
@@ -102,52 +149,36 @@ while product_name != "X":  # Loop code to get various products
 all_details.sort(key=lambda x: x[3])
 
 # Output the products within and outside of the budget
-for product in all_details:
-    if not product[2] > budget:  # if the original cost is less than
-        # the budget
-        products_in_budget.append(product)  # add it to the in budget list
-    else:  # otherwise, for all other original cost greater than the budget
-        products_out_budget.append(product)  # add it to the out budget list
+process_products()
 
 # Print products within budget
-print("The cost prices of the products that are within the budget are:\n")
-for product in products_in_budget:
-    print(f"Product Name: {product[0]}")
-    print(f"Amount: {product[1]}{unit_choice}")
-    print(f"Cost Price: ${product[2]:,.2f}")
-    print(f"Unit Price: ${product[3]:,.3f}\n")
+if len(products_in_budget):
+    print("The cost prices of the products that are within the budget are:\n")
+    for each_product in products_in_budget:
+        products_outputs(each_product)
 
 # Print products outside of the budget
-print("The cost prices of the products that are outside of the budget are:\n")
-for product in products_out_budget:
-    print(f"Product Name: {product[0]}")
-    print(f"Amount: {product[1]}{unit_choice}")
-    print(f"Cost Price: ${product[2]:,.2f}")
-    print(f"Unit Price: ${product[3]:,.3f}\n")
+if len(products_out_budget):
+    print("The cost prices of the products that are "
+          "outside of the budget are:\n")
+    for each_product in products_out_budget:
+        products_outputs(each_product)
 
+if len(all_details):
+    # Average Unit Price
+    average = average_unit_price()
+    print(f"The AVERAGE unit price is ${average:,.3f} per {unit_choice}\n")
 
-# Average Unit Price
-for product in all_details:
-    unit_price = product[3]
-    unit_prices_list.append(unit_price)
+    # Cheapest Product
+    print(f"The CHEAPEST product based on unit price:")
+    cheap_details = cheapest_product()
+    print(f"Product Name: {cheap_details[0]}")
+    print(f"Unit Price: ${cheap_details[1]:,.3f}\n")
 
-average = sum(unit_prices_list)/len(unit_prices_list)
-print(f"The AVERAGE unit price is ${average:,.3f} per {unit_choice}\n")
-
-# Cheapest Product
-cheapest_product_details = all_details[0]
-cheapest_name = cheapest_product_details[0]
-cheapest_unit_price = cheapest_product_details[3]
-print(f"The CHEAPEST product based on unit price:")
-print(f"Product Name: {cheapest_name}")
-print(f"Unit Price: ${cheapest_unit_price:,.3f}\n")
-
-# Most Expensive Product
-most_expensive_product_details = all_details[-1]
-most_expensive_name = most_expensive_product_details[0]
-most_expensive_unit_price = most_expensive_product_details[3]
-print(f"The MOST EXPENSIVE product based on unit price:")
-print(f"Product Name: {most_expensive_name}")
-print(f"Unit Price: ${most_expensive_unit_price:,.3f}\n")
+    # Most Expensive Product
+    print(f"The MOST EXPENSIVE product based on unit price:")
+    most_expensive_details = most_expensive_product()
+    print(f"Product Name: {most_expensive_details[0]}")
+    print(f"Unit Price: ${most_expensive_details[1]:,.3f}\n")
 
 # Present a recommendation

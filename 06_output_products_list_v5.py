@@ -1,4 +1,4 @@
-# Ensures tht the outputs will only be printed if it is necessary
+# Ensures that the outputs will only be printed if it is necessary
 # If there are no costs within or outside of the budget, it won't print
 # those statements
 

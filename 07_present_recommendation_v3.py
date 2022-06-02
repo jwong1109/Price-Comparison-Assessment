@@ -74,7 +74,7 @@ def decide_cheap(recommend_cheap_price):
 def cheaper_out_of_budget():
     print(f"\nHowever, {cheap_details[0]} has a cheaper unit price of $"
           f"{cheap_details[1]:,.3f} per {unit_choice}, but the "
-          f"cost price of {cheap_details[2]:,.2f} is over "
+          f"cost price of ${cheap_details[2]:,.2f} is over "
           f"your budget of ${budget:,.2f}. \nYou could consider increasing "
           f"your budget to purchase {cheap_details[0]}.")
 

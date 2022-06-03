@@ -1,3 +1,7 @@
+# Basic program for calculations
+# Ask the user for the amount and the price, then uses this information to
+# work out the price per unit
+
 
 # Float checker from 01_user_budget_trial3_v2
 def float_checker(question):

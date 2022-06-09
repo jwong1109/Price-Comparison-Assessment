@@ -1,6 +1,9 @@
 # Ensures that a comment is made if there is a cheaper unit price outside
 # the budget
 
+# Also ensures that the correct phrase is used when describing how cheap the
+# recommendation is.
+
 # For testing purposes
 budget = 3
 unit_choice = "kg"

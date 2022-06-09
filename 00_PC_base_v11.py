@@ -1,9 +1,28 @@
 # Based on 00_PC_base_v10, this version acts on the feedback from the
 # usability testing
 
-# ...
-# Force users to enter at least two products for comparison
-# ...
+# Instructions more brief and formatted better
+# More guidelines throughout the program
+
+# Making questions to the user clearer. The budget is asking for the
+# maximum amount the user wants to spend on the product. The unit for
+# comparison is asking for the measuring unit. When entering number of
+# units, it is the actual quantity of the product without the measuring units.
+# Also, ensured that users cannot enter zero for the amount or cost price
+# of the product.
+
+# Forced users to enter at least two products for comparison. After two
+# products have been entered, the users are given an option to enter more
+# products or stop entering products. The escape code is also clear to the
+# user ('Y' - to keep entering products, 'N' - to stop entering products).
+
+# The product name allows for two words rather than one name, while still
+# printing error messages if only a space is entered.
+
+# Decorations have been added so that the text is easier to read.
+
+# The program outputs the details when the user is ready to see the output
+# by pressing enter.
 
 # Import Statements
 
@@ -19,12 +38,14 @@ def get_choice(choice, valid_choices):
             # the list eg. yes becomes "Y"
             return choice  # return the choice to the main routine
     print(choice_error)  # if the response is invalid, print the error message
+    return False
 
 
 # Function containing instructions
 def show_instructions(valid_responses):
-    instructions = ""
-    while not instructions:  # This loops until a valid response is entered
+    instructions = False
+    while instructions is False:  # This loops until a valid
+        # response is entered
         instructions = not_blank("Would you like to read the instructions for "
                                  "this price comparison program?: ")
         instructions = (get_choice(instructions, valid_responses))
@@ -249,7 +270,7 @@ unit_prices_list = []  # Another unit_prices_list to find the average
 valid_yes_no = [["y", "yes"], ["n", "no"]]
 
 # Welcome the user
-print("####### WELCOME to your Price Comparison Tool!! #######")
+print("$$$$$$$ WELCOME to your Price Comparison Tool!! $$$$$$$\n")
 show_instructions(valid_yes_no)  # call the function that ask user if they
 # have used the program before and whether they would like to read the
 # instructions
@@ -299,9 +320,16 @@ while another_product != "N":  # Loop code to get various products
     print(f"Product Name: {product_name}\n")
     # Get input for the number of units (amount) and price -
     # check it is a float
-    amount = float_checker("Enter the number of units (amount) without "
-                           "the measuring unit: ")
-    price = float_checker("Enter cost price: $")
+    amount = 0  # Set amount at zero
+    price = 0  # Set price at zero
+    while amount <= 0 or price <= 0:  # while amount or price 0 or less
+        amount = float_checker("Enter the number of units (amount) without "
+                               "the measuring unit: ")
+        price = float_checker("Enter cost price: $")
+        if amount <= 0 or price <= 0:  # if amount or price is 0 or less
+            # print the error message
+            print("Both the amount and price of the product needs to be "
+                  "greater than zero. Please enter again!")
     # Calculate price per unit - call the function with amount and price
     # as two parameters
     price_per_unit = calculate_price_per_unit(amount, price)
@@ -312,11 +340,12 @@ while another_product != "N":  # Loop code to get various products
     all_details.append(entered_details)
     product_count += 1  # add 1 to product counter
     if product_count >= 2:  # if at least two products have been entered
+        another_product = False
         # while loop until valid response is entered
-        while not another_product:
+        while another_product is False:
             # ask users if they want to enter another product
             another_product = not_blank("Would you like to enter "
-                                        "another product name? ('Y' or 'N'): ")
+                                        "another product name? ('y' or 'n'): ")
             another_product = get_choice(another_product, valid_yes_no)
         if another_product == "N":  # if users have finished entering details
             break  # break the while loop
@@ -332,10 +361,12 @@ all_details.sort(key=lambda x: x[3])
 # Output the products within and outside of the budget
 print("***************************************************")
 print()
+# Guidelines for what happens next after all the products have been entered
 print(f"Now, you have finished entering the different product details for "
       f"{product_comparison}. \nThe program will now list the products "
       f"within and outside the budget.\n")
 
+# Ensures that the program outputs when the user is ready
 ready_output_products = input("\nPress ENTER to output the products "
                               "within and outside of budget: ")
 process_products()
@@ -343,13 +374,16 @@ process_products()
 # Print products within budget
 if len(products_in_budget):  # if there are products within the budget,
     # then print the following
+    print("\n----- OUTPUTTING THE FOLLOWING -----")  # Heading for
+    # outputting details
     print("The cost prices of the products that are within the budget are:\n")
     for each_product in products_in_budget:  # for each product details
         # with cost prices that are within the budget, call the function to
         # print the details of these products
         products_outputs(each_product)
 else:
-    print("There are no products within your budget.")
+    print("There are no products within your budget.")  # otherwise print no
+    # products within budget
 
 # Print products outside of the budget
 if len(products_out_budget):  # if there are products outside of the budget,
@@ -361,19 +395,26 @@ if len(products_out_budget):  # if there are products outside of the budget,
         # to print the details of these products
         products_outputs(each_product)
 else:
-    print("There are no products outside of your budget.")
+    print("There are no products outside of your budget.")    # otherwise print
+    # no products outside budget
 
+# Guidelines for what happens after the list of products within and outside
+# of budget have been outputted
+print("***************************************************")
 print("\nNow, we will output the average "
       f"unit price, cheapest product, most expensive product, "
       f"and recommended product for {product_comparison}\n")
 
-ready_output_products = input("\nPress ENTER to output the above details: ")
+# Ensures that the program outputs the above details when the user is ready
+ready_output_products = input("\nPress ENTER to output these details: ")
 
 if len(all_details):  # only output this information if there is at least one
     # product entered
 
     # Average Unit Price
     average = average_unit_price()
+    print("\n----- OUTPUTTING THE FOLLOWING -----")  # Heading for
+    # outputting details
     print(f"The AVERAGE unit price is ${average:,.3f} per {unit_choice}\n")
 
     # Cheapest Product
@@ -399,5 +440,7 @@ if len(all_details):  # only output this information if there is at least one
     # budget based their cheapest unit prices first
     make_recommendation()  # call the recommendation function
 
+# Program finishing comment
 print("\nThank you for using this price comparison tool! \nWe hope this has "
-      "helped you decide the most suitable product for your budget.")
+      "helped you decide the most suitable "
+      f"{product_comparison} for your budget.")

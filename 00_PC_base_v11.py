@@ -1,5 +1,5 @@
 # Based on 00_PC_base_v10, this version acts on the feedback from the
-# usability testing
+# usability testing and makes the following  adjustments
 
 # Instructions more brief and formatted better
 # More guidelines throughout the program
@@ -18,15 +18,13 @@
 
 # The product name allows for two words rather than one name, while still
 # printing error messages if only a space is entered.
-
 # Decorations have been added so that the text is easier to read.
 
 # The program outputs the details when the user is ready to see the output
-# by pressing enter.
+# by pressing enter. Also, if there were no products within or outside the
+# budget, it will print a comment explaining this.
 
-# Import Statements
 
-# Functions go here
 # Function takes the entered choice and list of valid choices as parameters
 def get_choice(choice, valid_choices):
     choice_error = "Sorry, that is not a valid choice"

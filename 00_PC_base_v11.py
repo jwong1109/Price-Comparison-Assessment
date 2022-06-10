@@ -47,7 +47,8 @@ def show_instructions(valid_responses):
     while instructions is False:  # This loops until a valid
         # response is entered
         instructions = not_blank("Would you like to read the instructions for "
-                                 "this price comparison program?: ")
+                                 "this price comparison program? "
+                                 "('y' or 'n'): ")
         instructions = (get_choice(instructions, valid_responses))
 
     if instructions == "Y":  # If the user wants to read the instructions
@@ -270,7 +271,7 @@ unit_prices_list = []  # Another unit_prices_list to find the average
 valid_yes_no = [["y", "yes"], ["n", "no"]]
 
 # Welcome the user
-print("$$$$$$$ WELCOME to your Price Comparison Tool!! $$$$$$$\n")
+print("^^^^^^^ WELCOME to your Price Comparison Tool!! ^^^^^^^\n")
 show_instructions(valid_yes_no)  # call the function that ask user if they
 # have used the program before and whether they would like to read the
 # instructions

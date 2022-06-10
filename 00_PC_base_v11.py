@@ -1,5 +1,5 @@
 # Based on 00_PC_base_v10, this version acts on the feedback from the
-# usability testing and makes the following  adjustments
+# usability testing and makes the following adjustments
 
 # Instructions more brief and formatted better
 # More guidelines throughout the program
@@ -23,6 +23,7 @@
 # The program outputs the details when the user is ready to see the output
 # by pressing enter. Also, if there were no products within or outside the
 # budget, it will print a comment explaining this.
+# Finally, a finishing comment to thank the user for using the program.
 
 
 # Function takes the entered choice and list of valid choices as parameters

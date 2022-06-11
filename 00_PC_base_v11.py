@@ -1,5 +1,5 @@
 # Based on 00_PC_base_v10, this version acts on the feedback from the
-# usability testing and makes the following adjustments
+# usability testing and makes the following adjustments,
 
 # Instructions more brief and formatted better
 # More guidelines throughout the program
@@ -24,6 +24,8 @@
 # by pressing enter. Also, if there were no products within or outside the
 # budget, it will print a comment explaining this.
 # Finally, a finishing comment to thank the user for using the program.
+
+# The maximum budget constant has been changed to $250.
 
 
 # Function takes the entered choice and list of valid choices as parameters
@@ -278,9 +280,8 @@ show_instructions(valid_yes_no)  # call the function that ask user if they
 # Get user budget (between 1 and 500)
 # Minimum budget = 1, users don't enter a negative budget
 MINIMUM_BUDGET = 1
-# Max budget = 500, in case users want to compare
-# expensive products that need a high budget
-MAXIMUM_BUDGET = 500
+# Max budget = 250, so teenagers don't purchase very expensive items.
+MAXIMUM_BUDGET = 250
 
 # Ask user about the budget - check that it is a float
 budget = float_checker("\nPlease enter your budget (the maximum amount you "
@@ -403,7 +404,7 @@ else:
 print("***************************************************")
 print("\nNow, we will output the average "
       f"unit price, cheapest product, most expensive product, "
-      f"and recommended product for {product_comparison}\n")
+      f"and recommended product for {product_comparison}.\n")
 
 # Ensures that the program outputs the above details when the user is ready
 ready_output_products = input("\nPress ENTER to output these details: ")

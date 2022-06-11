@@ -441,7 +441,7 @@ if len(all_details):  # only output this information if there is at least one
     # budget based their cheapest unit prices first
     make_recommendation()  # call the recommendation function
 
-# Program finishing comment
+# Program finishing comment to thank users
 print("\nThank you for using this price comparison tool! \nWe hope this has "
       "helped you decide the most suitable "
       f"{product_comparison} for your budget.")

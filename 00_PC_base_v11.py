@@ -278,7 +278,7 @@ show_instructions(valid_yes_no)  # call the function that ask user if they
 # instructions
 
 # Get user budget (between 1 and 500)
-# Minimum budget = 1, users don't enter a negative budget
+# Minimum budget = 1, users don't enter 0 or a negative budget
 MINIMUM_BUDGET = 1
 # Max budget = 250, so teenagers don't purchase very expensive items.
 MAXIMUM_BUDGET = 250

@@ -6,7 +6,7 @@
 
 # For testing purposes
 budget = 3
-unit_choice = "kg"
+unit_choice = "g"
 details = [["Cadbury", 180, 3.80, 0.021], ["Whittakers", 250, 5.50, 0.022],
            ["KitKat", 45, 1.00, 0.022]]
 details.sort(key=lambda x: x[3])

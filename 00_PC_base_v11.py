@@ -1,5 +1,5 @@
 # Based on 00_PC_base_v10, this version acts on the feedback from the
-# usability testing and makes the following adjustments,
+# usability testing and makes the following adjustments:
 
 # Instructions more brief and formatted better
 # More guidelines throughout the program
